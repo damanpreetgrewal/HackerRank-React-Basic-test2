@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Articles({articles}) {
+const Articles = ({ articles }) => {
   return (
-    <div className="card w-50 mx-auto">
+    <div className='card w-50 mx-auto'>
       <table>
         <thead>
           <tr>
@@ -14,19 +14,19 @@ function Articles({articles}) {
         <tbody>
           {articles.map((item, index) => {
             return (
-                <>
-                    <tr data-testid="article" key={index}>
-                        <td data-testid="article-title">{item.title}</td>
-                        <td data-testid="article-upvotes">{item.upvotes}</td>
-                        <td data-testid="article-date">{item.date}</td>
-                    </tr>
-                </>
+              <>
+                <tr data-testid='article' key={index}>
+                  <td data-testid='article-title'>{item.title}</td>
+                  <td data-testid='article-upvotes'>{item.upvotes}</td>
+                  <td data-testid='article-date'>{item.date}</td>
+                </tr>
+              </>
             );
-            })}
+          })}
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
 export default Articles;
