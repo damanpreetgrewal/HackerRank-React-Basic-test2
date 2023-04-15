@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import 'h8k-components';
 
@@ -8,7 +8,8 @@ const title = 'Sorting Articles';
 
 const App = ({ articles }) => {
   const [posts, setPosts] = useState(articles);
-  console.log(posts);
+
+  const [firstLoad, setFirstLoad] = useState(true);
 
   const sortByVote = () => {
     const sortedArticlesByVote = articles.sort((a, b) => b.upvotes - a.upvotes);
@@ -17,6 +18,13 @@ const App = ({ articles }) => {
       return [...sortedArticlesByVote];
     });
   };
+
+  useEffect(() => {
+    if (firstLoad) {
+      sortByVote();
+      setFirstLoad(false);
+    }
+  }, [firstLoad, sortByVote, setFirstLoad]);
 
   const sortByRecent = () => {
     const sortedArticlesByDate = articles.sort(
