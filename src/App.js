@@ -7,20 +7,25 @@ import Articles from './components/Articles';
 const title = 'Sorting Articles';
 
 const App = ({ articles }) => {
-  const [sortBy, setSortBy] = useState(articles);
+  const [posts, setPosts] = useState(articles);
+  console.log(posts);
 
   const sortByVote = () => {
-    const sortVote = articles.sort((a, b) => {
-      return b.upvotes - a.upvotes;
+    const sortedArticlesByVote = articles.sort((a, b) => b.upvotes - a.upvotes);
+    console.log('sortedArticlesByVote', sortedArticlesByVote);
+    setPosts(prevState => {
+      return [...sortedArticlesByVote];
     });
-    setSortBy([...sortVote]);
   };
 
   const sortByRecent = () => {
-    const sortRecent = articles.sort((a, b) => {
-      return new Date(b.date) - new Date(a.date);
+    const sortedArticlesByDate = articles.sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
+    console.log('sortedArticlesByDate', sortedArticlesByDate);
+    setPosts(prevState => {
+      return [...sortedArticlesByDate];
     });
-    setSortBy([...sortRecent]);
   };
 
   return (
@@ -45,7 +50,7 @@ const App = ({ articles }) => {
           Most Recent
         </button>
       </div>
-      <Articles articles={sortBy} />
+      <Articles articles={posts} />
     </div>
   );
 };
