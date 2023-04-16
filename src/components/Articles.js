@@ -7,7 +7,7 @@ const Articles = ({ articles }) => {
         <thead>
           <tr>
             <th>Title</th>
-            <th>Upvotes</th>
+            <th>UpVotes</th>
             <th>Date</th>
           </tr>
         </thead>
@@ -15,7 +15,7 @@ const Articles = ({ articles }) => {
           {articles.map((item, index) => {
             return (
               <>
-                <tr data-testid='article' key={index}>
+                <tr data-testid='article'>
                   <td data-testid='article-title'>{item.title}</td>
                   <td data-testid='article-upvotes'>{item.upvotes}</td>
                   <td data-testid='article-date'>{item.date}</td>

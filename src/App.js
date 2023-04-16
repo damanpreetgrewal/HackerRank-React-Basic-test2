@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './App.css';
 import 'h8k-components';
 
@@ -11,13 +11,13 @@ const App = ({ articles }) => {
 
   const [firstLoad, setFirstLoad] = useState(true);
 
-  const sortByVote = () => {
+  const sortByVote = useCallback(() => {
     const sortedArticlesByVote = articles.sort((a, b) => b.upvotes - a.upvotes);
     console.log('sortedArticlesByVote', sortedArticlesByVote);
     setPosts(prevState => {
       return [...sortedArticlesByVote];
     });
-  };
+  }, [articles]);
 
   useEffect(() => {
     if (firstLoad) {
